@@ -8,12 +8,12 @@ import 'dart:math' show cos, sqrt, asin;
 
 import 'package:navi_mall_app/utils/contants.dart';
 
-class MapView extends StatefulWidget {
+class PolyLine extends StatefulWidget {
   @override
-  _MapViewState createState() => _MapViewState();
+  _PolyLineState createState() => _PolyLineState();
 }
 
-class _MapViewState extends State<MapView> {
+class _PolyLineState extends State<PolyLine> {
   CameraPosition _initialLocation = CameraPosition(target: LatLng(26.2334994,50.5538584));
   late GoogleMapController mapController;
 

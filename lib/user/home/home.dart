@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:navi_mall_app/user/home/map.dart';
 import 'package:navi_mall_app/user/home/setting_screen.dart';
 import 'package:navi_mall_app/user/home/home_body_content.dart';
 import 'package:navi_mall_app/pallete.dart';
 import 'package:navi_mall_app/user/home/save_parking.dart';
 import 'package:navi_mall_app/colors.dart' as color;
+import 'package:navi_mall_app/utils/map.dart';
+import 'package:navi_mall_app/utils/polyline.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -156,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
             HomeBodyContentScreen(),
-            ViewMap(),
+            PolyLine(),
             SaveParkingScreen(),
             SettingScreen(),
           ],

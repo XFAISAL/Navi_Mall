@@ -9,7 +9,6 @@ import 'package:navi_mall_app/location_controller.dart';
 import 'package:navi_mall_app/check_role.dart';
 import 'package:navi_mall_app/pallete.dart';
 import 'package:navi_mall_app/user/introduction/welcome_screen.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
