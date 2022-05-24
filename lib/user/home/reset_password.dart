@@ -1,8 +1,10 @@
 // ignore_for_file: sized_box_for_whitespace, unnecessary_import
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:navi_mall_app/login.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({Key? key}) : super(key: key);
@@ -27,6 +29,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     super.dispose();
   }
 
+  final currentUser = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +57,45 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       ),
       body: resetPasswordUI(context),
     );
+  }
+
+  changePassword() async {
+    try {
+      await currentUser!.updatePassword(newPassword);
+      FirebaseAuth.instance.signOut();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.transparent,
+          behavior: SnackBarBehavior.floating,
+          shape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          content: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.check_circle_rounded,
+                size: 40.0,
+                color: Colors.green[900],
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Expanded(
+                child: Text(
+                  "Your Password has been changed. Login again !",
+                  style: TextStyle(
+                      color: Colors.teal[900],
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    } catch (e) {}
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 
   resetPasswordUI(BuildContext context) {
@@ -126,7 +168,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   setState(() {
                     newPassword = newPasswordController.text;
                   });
-                  //changePassword();
+                  changePassword();
                 }
               },
               child: const Text(

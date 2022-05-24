@@ -11,7 +11,25 @@ import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MallInfoScreen extends StatefulWidget {
-  const MallInfoScreen({Key? key}) : super(key: key);
+  final String name;
+  final String photoURL;
+  final String open_hour;
+  final String close_hour;
+  final String facebook;
+  final String phone;
+  final String instagram;
+  final String website;
+  final String about;
+  const MallInfoScreen(
+      {required this.name,
+        required this.photoURL,
+        required this.open_hour,
+        required this.close_hour,
+        required this.facebook,
+        required this.phone,
+        required this.instagram,
+        required this.website,
+        required this.about});
 
   @override
   State<MallInfoScreen> createState() => _MallInfoScreenState();
@@ -38,7 +56,7 @@ class _MallInfoScreenState extends State<MallInfoScreen> {
         //   },
         // ),
         title: Text(
-          "City Center",
+          widget.name,
           style: GoogleFonts.playfairDisplay(
             textStyle: Theme.of(context).textTheme.headline5,
             fontSize: 25,
@@ -52,8 +70,8 @@ class _MallInfoScreenState extends State<MallInfoScreen> {
         children: [
           Stack(
             children: [
-              const Image(
-                  image: const AssetImage('assets/images/city_center_loc.png'),
+              Image(
+                  image: NetworkImage(widget.photoURL),
                   width: double.infinity,
                   height: 250,
                   fit: BoxFit.cover),
@@ -70,8 +88,8 @@ class _MallInfoScreenState extends State<MallInfoScreen> {
 
                   child: Row(
                     children: [
-                      const Text(
-                        'Open' + '',
+                      Text(
+                        widget.open_hour,
                         style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
@@ -88,8 +106,8 @@ class _MallInfoScreenState extends State<MallInfoScreen> {
                         ),
                       ),
                       const SizedBox(width: 5),
-                      const Text(
-                        'Closes' + '12 am',
+                      Text(
+                        widget.close_hour,
                         style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
@@ -109,7 +127,7 @@ class _MallInfoScreenState extends State<MallInfoScreen> {
             children: [
               Link(
                 target: LinkTarget.blank,
-                uri: Uri.parse('https://www.facebook.com/CityCentreBahrain/'),
+                uri: Uri.parse(widget.facebook),
                 builder: (context, followLink) => GFIconButton(
                   shape: GFIconButtonShape.circle,
                   onPressed: followLink,
@@ -125,7 +143,7 @@ class _MallInfoScreenState extends State<MallInfoScreen> {
                   shape: GFIconButtonShape.pills,
                   onPressed: () async {
                     await FlutterLaunch.launchWhatsapp(
-                        phone: '+971800226255', message: '');
+                        phone: widget.phone, message: '');
                   },
                   icon: const Icon(FontAwesomeIcons.whatsapp),
                   color: GFColors.SUCCESS,
@@ -134,7 +152,7 @@ class _MallInfoScreenState extends State<MallInfoScreen> {
               const SizedBox(width: 10),
               Link(
                 target: LinkTarget.blank,
-                uri: Uri.parse('https://www.instagram.com/citycentrebahrain/'),
+                uri: Uri.parse(widget.instagram),
                 builder: (context, followLink) => GFIconButton(
                     shape: GFIconButtonShape.pills,
                     color: const Color(0xffFCAF45),
@@ -144,7 +162,7 @@ class _MallInfoScreenState extends State<MallInfoScreen> {
               const SizedBox(width: 10),
               Link(
                 target: LinkTarget.blank,
-                uri: Uri.parse('https://www.citycentrebahrain.com/'),
+                uri: Uri.parse(widget.website),
                 builder: (context, followLink) => GFButton(
                   onPressed: followLink,
                   shape: GFButtonShape.pills,
@@ -164,7 +182,7 @@ class _MallInfoScreenState extends State<MallInfoScreen> {
           Padding(
             padding: EdgeInsets.all(12.0),
             child: Text(
-              "City Centre Bahrain is the largest mixed-use development in Bahrain offering the best shopping, leisure, and entertainment experience under one roof. Strategically located on Sheikh Khalifa Bin Salman Al Khalifa Highway in the heart of Manama.City Centre Bahrain has introduced a world-class retail ambiance and hundreds of other 'firsts' to the Kingdom including 150 of its over 340 internationally reputed brands making their debut in the country. The Centre’s stunning entertainment offer includes the region’s first indoor/outdoor temperature controlled 15,000 square meter Wahooo! Water-park, Bahrain’s biggest cinema complex Cineco 20, and a family entertainment centre for children and young adults, Magic Planet. For food and beverage options, over 60 dining outlets have been lined up to offer the most popular as well as exotic choices from all over the world",
+              widget.about,
               style: GoogleFonts.lato(
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
@@ -174,19 +192,7 @@ class _MallInfoScreenState extends State<MallInfoScreen> {
           ElevatedButton(
             onPressed: () {},
             child: Text(
-              'View Map / Visit Mall',
-              style: GoogleFonts.lato(fontSize: 18, color: Colors.white),
-            ),
-            style: ElevatedButton.styleFrom(
-              shape: StadiumBorder(),
-              fixedSize: Size(100, 45),
-            ),
-          ),
-          SizedBox(height: 14),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              'Visit Stores',
+              'View Map ',
               style: GoogleFonts.lato(fontSize: 18, color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(

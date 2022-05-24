@@ -1,5 +1,7 @@
 // ignore_for_file: unused_field
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:navi_mall_app/pallete.dart';
@@ -16,8 +18,36 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  User? user = FirebaseAuth.instance.currentUser;
   final _formKey = GlobalKey<FormState>();
+  var name = "";
+  var phone = "";
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      var fields = value.data();
+      nameController.text = fields!['name'] as String;
+      phoneController.text = fields['phone'] as String;
+    });
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    nameController.dispose();
+    phoneController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,12 +98,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 getText(context, 'Name'),
                 const SizedBox(height: 8),
                 TextFormField(
-                  // controller: nameController,
+                  controller: nameController,
                   // initialValue: name,
                   // onChanged: (value) => name = value,
+                  style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                     errorStyle:
-                        const TextStyle(color: Colors.redAccent, fontSize: 15),
+                    const TextStyle(color: Colors.redAccent, fontSize: 15),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -83,13 +114,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 getText(context, 'Phone'),
                 const SizedBox(height: 8),
                 TextFormField(
-                  // controller: eduController,
-                  // initialValue: education,
-                  // onChanged: (value) => education = value,
+                  controller: phoneController,
+                  // initialValue: phone,
+                  // onChanged: (value) => phone = value,
+                  style: TextStyle(color: Colors.black),
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                     errorStyle:
-                        const TextStyle(color: Colors.redAccent, fontSize: 15),
+                    const TextStyle(color: Colors.redAccent, fontSize: 15),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -99,10 +131,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       if (_formKey.currentState!.validate()) {
-                        // DatabaseSeekerService(uid: user!.uid).updateUser(name,
-                        //     education, experience, skills, about, address);
+                        await FirebaseFirestore.instance
+                            .collection("users")
+                            .doc(user!.uid)
+                            .update({'name': name, 'phone': phone});
                         Navigator.pop(context);
                       }
                     },
@@ -128,11 +162,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   Widget getText(BuildContext context, String label) => Text(
-        label,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-          // color: color.AppColor.welcomeImageContainer),
-        ),
-      );
+    label,
+    style: const TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+      // color: color.AppColor.welcomeImageContainer),
+    ),
+  );
 }

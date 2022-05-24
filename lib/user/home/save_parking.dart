@@ -26,15 +26,6 @@ class _SaveParkingScreenState extends State<SaveParkingScreen> {
           Form(
             child: Column(
               children: [
-                ColorFiltered(
-                  colorFilter: ColorFilter.mode(
-                      Colors.white.withOpacity(0.3), BlendMode.srcOver),
-                  child: const Image(
-                    height: 100,
-                    width: 120,
-                    image: AssetImage('assets/images/city_center.png'),
-                  ),
-                ),
                 Container(
                   height: 150,
                   width: 150,
@@ -73,7 +64,43 @@ class _SaveParkingScreenState extends State<SaveParkingScreen> {
                           keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
                             constraints:
-                                BoxConstraints(maxWidth: 15, maxHeight: 40),
+                            BoxConstraints(maxWidth: 15, maxHeight: 40),
+                            isDense: true,
+                            errorStyle: TextStyle(
+                                color: Colors.redAccent, fontSize: 15),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 15),
+                Row(
+                  children: [
+                    Text(
+                      'Mall ',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Color.fromARGB(255, 41, 49, 42)),
+                    ),
+                    SizedBox(width: 5),
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5, left: 5),
+                        child: TextFormField(
+                          maxLines: 1,
+                          // controller: eduController,
+                          // initialValue: education,
+                          // onChanged: (value) => education = value,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            constraints:
+                            BoxConstraints(maxWidth: 15, maxHeight: 40),
                             isDense: true,
                             errorStyle: TextStyle(
                                 color: Colors.redAccent, fontSize: 15),
@@ -109,7 +136,7 @@ class _SaveParkingScreenState extends State<SaveParkingScreen> {
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                             constraints:
-                                BoxConstraints(maxWidth: 15, maxHeight: 40),
+                            BoxConstraints(maxWidth: 15, maxHeight: 40),
                             isDense: true,
                             errorStyle: TextStyle(
                                 color: Colors.redAccent, fontSize: 15),

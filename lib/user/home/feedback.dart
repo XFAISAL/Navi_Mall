@@ -61,7 +61,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         child: Center(
           child: Padding(
             padding:
-                const EdgeInsets.only(top: 40, left: 15, right: 15, bottom: 10),
+            const EdgeInsets.only(top: 40, left: 15, right: 15, bottom: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -173,6 +173,25 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       print(rating);
                     }
                   },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: GestureDetector(
+                    onTap: () async {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(255, 7, 81, 6).withOpacity(0.4),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Center(
+                          child: Text("Save",
+                              style: GoogleFonts.lato(
+                                  color: Colors.white, fontSize: 20))),
+                    ),
+                  ),
                 ),
               ],
             ),

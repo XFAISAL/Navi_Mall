@@ -25,7 +25,7 @@ class _EditMallDetailsScreenState extends State<EditMallDetailsScreen> {
   User? user = FirebaseAuth.instance.currentUser;
   final firestoreInstance = FirebaseFirestore.instance;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  dynamic documents;
+  dynamic documents = 0;
   @override
   void initState() {
     // TODO: implement initState
@@ -57,7 +57,7 @@ class _EditMallDetailsScreenState extends State<EditMallDetailsScreen> {
       ),
       body: Container(
         padding:
-            const EdgeInsets.only(top: 20, bottom: 20, left: 12, right: 12),
+        const EdgeInsets.only(top: 20, bottom: 20, left: 12, right: 12),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
@@ -86,29 +86,29 @@ class _EditMallDetailsScreenState extends State<EditMallDetailsScreen> {
                     fontSize: 20, fontWeight: FontWeight.w600),
               ),
               SizedBox(height: 20),
-              ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: ((context) => ViewMallScreen(
-                            mall: widget.name,
-                            photoURL: widget.photoURL,
-                          ))));
-                },
-                icon: Icon(
-                  Icons.edit,
-                  color: color.AppColor.white,
-                ),
-                label: Text(
-                  'Mall Info',
-                  style: GoogleFonts.roboto(
-                      color: color.AppColor.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.w600),
-                ),
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size(265, 55),
-                ),
-              ),
+              // ElevatedButton.icon(
+              //   onPressed: () {
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //         builder: ((context) => ViewMallScreen(
+              //               mall: widget.name,
+              //               photoURL: widget.photoURL,
+              //             ))));
+              //   },
+              //   icon: Icon(
+              //     Icons.edit,
+              //     color: color.AppColor.white,
+              //   ),
+              //   label: Text(
+              //     'Mall Info',
+              //     style: GoogleFonts.roboto(
+              //         color: color.AppColor.white,
+              //         fontSize: 22,
+              //         fontWeight: FontWeight.w600),
+              //   ),
+              //   style: ElevatedButton.styleFrom(
+              //     fixedSize: Size(265, 55),
+              //   ),
+              // ),
               SizedBox(height: 20),
               ElevatedButton.icon(
                 onPressed: () {

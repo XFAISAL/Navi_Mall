@@ -63,8 +63,8 @@ class _ViewStoresListScreenState extends State<ViewStoresListScreen> {
             }
             Navigator.of(context).push(MaterialPageRoute(
                 builder: ((context) => AddStoreScreen(
-                      mall_name: widget.name,
-                    ))));
+                  mall_name: widget.name,
+                ))));
           },
         ),
       ),
@@ -85,127 +85,127 @@ class _ViewStoresListScreenState extends State<ViewStoresListScreen> {
       backgroundColor: color.AppColor.homePageBackground,
       body: service_lst!.length > 0
           ? ListView.builder(
-              padding: const EdgeInsets.only(
-                top: 20,
-                bottom: 10,
-                right: 10,
-                left: 10,
-              ),
-              itemCount: service_lst!.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  elevation: 8.0,
-                  shadowColor: Color.fromARGB(255, 7, 81, 6).withOpacity(0.4),
-                  child: ListTile(
-                    tileColor: color.AppColor.greenshade.withOpacity(0.2),
-                    leading: Image(
-                        width: 60,
-                        image: NetworkImage(service_lst![index].photoURL)),
-                    title: Text(
-                      service_lst![index].store_name,
-                      style: GoogleFonts.roboto(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.elliptical(10, 5)),
-                              color: Color.fromARGB(255, 7, 81, 6)
-                                  .withOpacity(0.4),
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: ((context) => AddTrendScreen(
-                                          store: service_lst![index].store_name,
-                                          mall: widget.name,
-                                        ))));
-                              },
-                              icon: Icon(
-                                Icons.trending_up,
-                                color: color.AppColor.white,
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 5),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.elliptical(10, 5)),
-                              color: Color.fromARGB(255, 7, 81, 6)
-                                  .withOpacity(0.4),
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: ((context) => ViewStoreScreen(
-                                          name: service_lst![index].store_name,
-                                        ))));
-                              },
-                              icon: Icon(
-                                Icons.edit,
-                                color: color.AppColor.white,
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 7.5),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.elliptical(10, 5)),
-                              color: Color.fromARGB(255, 7, 81, 6)
-                                  .withOpacity(0.4),
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                AwesomeDialog(
-                                  context: context,
-                                  dialogType: DialogType.QUESTION,
-                                  headerAnimationLoop: false,
-                                  animType: AnimType.TOPSLIDE,
-                                  title: 'Delete Store?',
-                                  btnOkColor: Colors.redAccent,
-                                  btnOkText: 'Delete',
-                                  btnOkIcon: Icons.delete_outlined,
-                                  btnCancelColor: Colors.blueGrey.shade700,
-                                  btnCancelText: 'Cancel',
-                                  desc:
-                                      'This will delete the store from the mall',
-                                  descTextStyle: TextStyle(
-                                      color: Colors.blueGrey.shade300,
-                                      fontSize: 18),
-                                  showCloseIcon: true,
-                                  btnCancelOnPress: () {},
-                                  btnOkOnPress: () {
-                                    delete_store(
-                                        service_lst![index].store_name);
-                                  },
-                                ).show();
-                              },
-                              icon: Icon(
-                                Icons.delete,
-                                color: color.AppColor.white,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+          padding: const EdgeInsets.only(
+            top: 20,
+            bottom: 10,
+            right: 10,
+            left: 10,
+          ),
+          itemCount: service_lst!.length,
+          itemBuilder: (context, index) {
+            return Card(
+              elevation: 8.0,
+              shadowColor: Color.fromARGB(255, 7, 81, 6).withOpacity(0.4),
+              child: ListTile(
+                tileColor: color.AppColor.greenshade.withOpacity(0.2),
+                leading: Image(
+                    width: 60,
+                    image: NetworkImage(service_lst![index].photoURL)),
+                title: Text(
+                  service_lst![index].store_name,
+                  style: GoogleFonts.roboto(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
                   ),
-                );
-              })
+                ),
+                trailing: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          BorderRadius.all(Radius.elliptical(10, 5)),
+                          color: Color.fromARGB(255, 7, 81, 6)
+                              .withOpacity(0.4),
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: ((context) => AddTrendScreen(
+                                  store: service_lst![index].store_name,
+                                  mall: widget.name,
+                                ))));
+                          },
+                          icon: Icon(
+                            Icons.trending_up,
+                            color: color.AppColor.white,
+                          ),
+                        ),
+                      ),
+                      // SizedBox(width: 5),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //     borderRadius:
+                      //         BorderRadius.all(Radius.elliptical(10, 5)),
+                      //     color: Color.fromARGB(255, 7, 81, 6)
+                      //         .withOpacity(0.4),
+                      //   ),
+                      //   child: IconButton(
+                      //     onPressed: () {
+                      //       Navigator.of(context).push(MaterialPageRoute(
+                      //           builder: ((context) => ViewStoreScreen(
+                      //                 name: service_lst![index].store_name,
+                      //               ))));
+                      //     },
+                      //     icon: Icon(
+                      //       Icons.edit,
+                      //       color: color.AppColor.white,
+                      //     ),
+                      //   ),
+                      // ),
+                      SizedBox(width: 7.5),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          BorderRadius.all(Radius.elliptical(10, 5)),
+                          color: Color.fromARGB(255, 7, 81, 6)
+                              .withOpacity(0.4),
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.QUESTION,
+                              headerAnimationLoop: false,
+                              animType: AnimType.TOPSLIDE,
+                              title: 'Delete Store?',
+                              btnOkColor: Colors.redAccent,
+                              btnOkText: 'Delete',
+                              btnOkIcon: Icons.delete_outlined,
+                              btnCancelColor: Colors.blueGrey.shade700,
+                              btnCancelText: 'Cancel',
+                              desc:
+                              'This will delete the store from the mall',
+                              descTextStyle: TextStyle(
+                                  color: Colors.blueGrey.shade300,
+                                  fontSize: 18),
+                              showCloseIcon: true,
+                              btnCancelOnPress: () {},
+                              btnOkOnPress: () {
+                                delete_store(
+                                    service_lst![index].store_name);
+                              },
+                            ).show();
+                          },
+                          icon: Icon(
+                            Icons.delete,
+                            color: color.AppColor.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          })
           : Center(
-              child: Text(
-              "No Data Found ",
-              style: TextStyle(fontSize: 16),
-            )),
+          child: Text(
+            "No Data Found ",
+            style: TextStyle(fontSize: 16),
+          )),
     );
   }
 
