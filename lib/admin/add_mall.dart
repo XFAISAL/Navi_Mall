@@ -30,6 +30,10 @@ class AddMallScreen extends StatefulWidget {
 
 class _AddMallScreenState extends State<AddMallScreen> {
   String nameFile = "";
+  LatLng? latLng;
+  double? lat;
+  double? lng;
+  GeoPoint final_geo = GeoPoint(0, 0);
   User? user = FirebaseAuth.instance.currentUser;
   firebase_storage.UploadTask? task;
   File? image;
@@ -259,7 +263,7 @@ class _AddMallScreenState extends State<AddMallScreen> {
                       if (_formKey.currentState!.validate()) {
                         uploadFile(image!);
                         AdminService(user!.uid).addMall(name, phone, web, insta,
-                            facebook, open_hours, close_hours, about, location);
+                            facebook, open_hours, close_hours, about, final_geo);
                         AwesomeDialog(
                             context: context,
                             animType: AnimType.SCALE,
@@ -308,8 +312,15 @@ class _AddMallScreenState extends State<AddMallScreen> {
       MaterialPageRoute(builder: (context) => CurrentLocationScreen()),
     );
     developer.log("Faisal");
-    developer.log(result);
+    setState(() => {"latLng":result});
+    final_geo = GeoPoint(result.latitude, result.longitude);
+    setState(() => {"final_geo": final_geo});
+    //GeoPoint point = new GeoPoint(lat, lng);
+    developer.log("${result.latitude}");
+    developer.log("final_geo");
+    developer.log(final_geo.toString());
     print("FAISAL");
+
     print(result);
   }
 

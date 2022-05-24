@@ -26,6 +26,7 @@ class CurrentLocationScreen extends StatefulWidget {
 }
 
 class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
+  LatLng? test;
 
   CameraPosition initialLocation =
       const CameraPosition(target: LatLng(0.0, 0.0));
@@ -46,7 +47,7 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
     myMarker = [];
     myMarker.add(Marker(
         markerId: MarkerId(tappedPoint.toString()), position: tappedPoint));
-    setState(() {});
+    setState(() {test = tappedPoint;});
   }
 
   Future<void> getLocAddress(LatLng latlng) async {
@@ -250,7 +251,7 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
                     //   {"Lat": "", "Lng": ""}
                     // ]);
 
-                    Navigator.pop(context, location);
+                    Navigator.pop(context, test);
                     /* LocationModel locationModel = LocationModel(
                         address: myAddress,
                         lat: currentLat,

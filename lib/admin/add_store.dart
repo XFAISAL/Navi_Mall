@@ -12,6 +12,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:navi_mall_app/colors.dart' as color;
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'dart:developer' as developer;
+
+import 'package:navi_mall_app/utils/map.dart';
 
 class AddStoreScreen extends StatefulWidget {
   final String mall_name;
@@ -38,11 +41,13 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
   final _formKey = GlobalKey<FormState>();
   var store_name = "";
   var phone = "";
-  GeoPoint location = GeoPoint(0, 0);
+  var location = GeoPoint(0, 0);
   var about = "";
   var open_hours = "";
   var close_hours = "";
   var mallName = "";
+  GeoPoint final_geo = GeoPoint(0, 0);
+
   @override
   void initState() {
     // TODO: implement initState
@@ -327,6 +332,12 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
                 const SizedBox(height: 24),
                 getText(context, 'Location'),
                 const SizedBox(height: 8),
+                ElevatedButton(
+                  onPressed: () {
+                    _navigateAndDisplaySelection(context);
+                  },
+                  child: const Text('Pick location'),
+                ),
                 // Location Picker
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
@@ -377,7 +388,7 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
           .set({
         "store_name": store_name,
         "phone": phone,
-        "location": location,
+        "location": final_geo,
         "category": _chosenCategory,
         "section": _chosenSection,
         "open_hour": open_hours,
@@ -540,4 +551,24 @@ class _AddStoreScreenState extends State<AddStoreScreen> {
       ),
     );
   }
+  Future<void> _navigateAndDisplaySelection(BuildContext context) async {
+    // Navigator.push returns a Future that completes after calling
+    // Navigator.pop on the Selection Screen.
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CurrentLocationScreen()),
+    );
+    developer.log("Faisal");
+    setState(() => {"latLng":result});
+    final_geo = GeoPoint(result.latitude, result.longitude);
+    setState(() => {"final_geo": final_geo});
+    //GeoPoint point = new GeoPoint(lat, lng);
+    developer.log("${result.latitude}");
+    developer.log("final_geo");
+    developer.log(final_geo.toString());
+    print("FAISAL");
+
+    print(result);
+  }
+
 }
