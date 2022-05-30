@@ -311,7 +311,6 @@ class _AddMallScreenState extends State<AddMallScreen> {
       context,
       MaterialPageRoute(builder: (context) => CurrentLocationScreen()),
     );
-    developer.log("Faisal");
     setState(() => {"latLng":result});
     final_geo = GeoPoint(result.latitude, result.longitude);
     setState(() => {"final_geo": final_geo});
@@ -319,7 +318,6 @@ class _AddMallScreenState extends State<AddMallScreen> {
     developer.log("${result.latitude}");
     developer.log("final_geo");
     developer.log(final_geo.toString());
-    print("FAISAL");
 
     print(result);
   }

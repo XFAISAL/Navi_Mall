@@ -45,8 +45,7 @@ class _HomeBodyContentScreenState extends State<HomeBodyContentScreen> {
   final TextEditingController searchController = TextEditingController();
   mall_modelClass? mallSearchResponse;
   int _currentIndex = 0;
-  List<mall_modelClass>? business_lst;
-  List<String>? id;
+
   @override
   void initState() {
     super.initState();
@@ -93,7 +92,7 @@ class _HomeBodyContentScreenState extends State<HomeBodyContentScreen> {
                     style: GoogleFonts.lato(),
                     decoration: InputDecoration(
                       hintText:
-                      'Search for shopping center, brands, stores ...',
+                          'Search for shopping center, brands, stores ...',
                       hintStyle: TextStyle(color: color.AppColor.gray),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -101,14 +100,14 @@ class _HomeBodyContentScreenState extends State<HomeBodyContentScreen> {
                           color: color.AppColor.matteBlack,
                         ),
                         onPressed: () {
-                          //get_mall_search(searchController.text.trim());
+                          get_mall_search(searchController.text.trim());
                           print("Click");
                         },
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(40)),
                         borderSide:
-                        BorderSide(width: 1, color: color.AppColor.gray),
+                            BorderSide(width: 1, color: color.AppColor.gray),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(40)),
@@ -149,57 +148,57 @@ class _HomeBodyContentScreenState extends State<HomeBodyContentScreen> {
                   padding: const EdgeInsets.all(2),
                   child: mall_lst!.length > 0
                       ? ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.all(12.0),
-                      itemCount: mall_lst!.length,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .push(MaterialPageRoute(
-                                  builder: (context) => MallInfoScreen(
-                                    name: mall_lst![index].name,
-                                    about: mall_lst![index].about,
-                                    close_hour: mall_lst![index].close_hour,
-                                    website: mall_lst![index].website,
-                                    facebook: mall_lst![index].facebook,
-                                    photoURL: mall_lst![index].photoURL,
-                                    instagram: mall_lst![index].name,
-                                    phone: mall_lst![index].phone,
-                                    open_hour: mall_lst![index].open_hour,
-                                  ),
-                                ));
-                              },
-                              child: Card(
-                                shadowColor: color.AppColor.buttons,
-                                //elevation: 3,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  side: BorderSide(
-                                    color: color.AppColor.gray
-                                        .withOpacity(0.2),
-                                    width: 2,
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.all(12.0),
+                          itemCount: mall_lst!.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) => MallInfoScreen(
+                                        name: mall_lst![index].name,
+                                        about: mall_lst![index].about,
+                                        close_hour: mall_lst![index].close_hour,
+                                        website: mall_lst![index].website,
+                                        facebook: mall_lst![index].facebook,
+                                        photoURL: mall_lst![index].photoURL,
+                                        instagram: mall_lst![index].name,
+                                        phone: mall_lst![index].phone,
+                                        open_hour: mall_lst![index].open_hour,
+                                      ),
+                                    ));
+                                  },
+                                  child: Card(
+                                    shadowColor: color.AppColor.buttons,
+                                    //elevation: 3,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      side: BorderSide(
+                                        color: color.AppColor.gray
+                                            .withOpacity(0.2),
+                                        width: 2,
+                                      ),
+                                    ),
+                                    child: Image(
+                                      height: 125,
+                                      width: 125,
+                                      image: NetworkImage(
+                                          mall_lst![index].photoURL),
+                                    ),
                                   ),
                                 ),
-                                child: Image(
-                                  height: 125,
-                                  width: 125,
-                                  image: NetworkImage(
-                                      mall_lst![index].photoURL),
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 4),
-                          ],
-                        );
-                      })
+                                SizedBox(height: 4),
+                              ],
+                            );
+                          })
                       : Center(
-                      child: Text(
-                        "No Data Found ",
-                        style: TextStyle(fontSize: 18),
-                      )),
+                          child: Text(
+                          "No Data Found ",
+                          style: TextStyle(fontSize: 18),
+                        )),
                 ),
               ],
             ),
@@ -297,102 +296,102 @@ class _HomeBodyContentScreenState extends State<HomeBodyContentScreen> {
                     //color: color.AppColor.gray.withOpacity(0.2),
                     child: trend_lst!.length >= 1
                         ? ListView.builder(
-                        shrinkWrap: true,
-                        reverse: true,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Column(
-                            children: [
-                              Container(
-                                color: color.AppColor.gray.withOpacity(0.1),
-                                child: ListTile(
-                                  title: Text(
-                                    trend_lst![index].storeName,
-                                    style: GoogleFonts.lato(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  subtitle: Text(
-                                    trend_lst![index].mallName,
-                                    style: GoogleFonts.lato(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {},
-                                child: Card(
-                                  elevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    // side: BorderSide(
-                                    //   color: color.AppColor.gray.withOpacity(0.2),
-                                    //   width: 1,
-                                    // ),
-                                  ),
-                                  child: Image(
-                                    height: 180,
-                                    width:
-                                    MediaQuery.of(context).size.width,
-                                    image: NetworkImage(
-                                        trend_lst![index].photoURL),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 4),
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                            shrinkWrap: true,
+                            reverse: true,
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Column(
                                 children: [
-                                  IconButton(
-                                    onPressed: () {
-                                      final box = context.findRenderObject()
-                                      as RenderBox?;
-                                      Share.share(
-                                          trend_lst![index].description,
-                                          subject: 'Shared',
-                                          sharePositionOrigin: box!
-                                              .localToGlobal(
-                                              Offset.zero) &
-                                          box.size);
-                                    },
-                                    icon: Icon(
-                                      Icons.share,
-                                      color: color.AppColor.white,
-                                    ),
-                                  ),
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    child: Text(
-                                      'Navigate',
-                                      style: GoogleFonts.roboto(
-                                        color: color.AppColor.white,
+                                  Container(
+                                    color: color.AppColor.gray.withOpacity(0.1),
+                                    child: ListTile(
+                                      title: Text(
+                                        trend_lst![index].storeName,
+                                        style: GoogleFonts.lato(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      subtitle: Text(
+                                        trend_lst![index].mallName,
+                                        style: GoogleFonts.lato(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
                                     ),
-                                    style: ElevatedButton.styleFrom(
-                                      shape: StadiumBorder(),
-                                      primary: Color.fromARGB(255, 7, 81, 6)
-                                          .withOpacity(0.4),
-                                      //primary: color.AppColor.buttons,
+                                  ),
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Card(
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        // side: BorderSide(
+                                        //   color: color.AppColor.gray.withOpacity(0.2),
+                                        //   width: 1,
+                                        // ),
+                                      ),
+                                      child: Image(
+                                        height: 180,
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        image: NetworkImage(
+                                            trend_lst![index].photoURL),
+                                      ),
                                     ),
                                   ),
+                                  SizedBox(height: 4),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          final box = context.findRenderObject()
+                                              as RenderBox?;
+                                          Share.share(
+                                              trend_lst![index].description,
+                                              subject: 'Shared',
+                                              sharePositionOrigin: box!
+                                                      .localToGlobal(
+                                                          Offset.zero) &
+                                                  box.size);
+                                        },
+                                        icon: Icon(
+                                          Icons.share,
+                                          color: color.AppColor.white,
+                                        ),
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {},
+                                        child: Text(
+                                          'Navigate',
+                                          style: GoogleFonts.roboto(
+                                            color: color.AppColor.white,
+                                          ),
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                          shape: StadiumBorder(),
+                                          primary: Color.fromARGB(255, 7, 81, 6)
+                                              .withOpacity(0.4),
+                                          //primary: color.AppColor.buttons,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Divider(
+                                    color: color.AppColor.gray.withOpacity(0.2),
+                                    thickness: 1.5,
+                                  ),
                                 ],
-                              ),
-                              Divider(
-                                color: color.AppColor.gray.withOpacity(0.2),
-                                thickness: 1.5,
-                              ),
-                            ],
-                          );
-                        })
+                              );
+                            })
                         : Center(
-                        child: Text(
-                          "No Data Found ",
-                          style: TextStyle(fontSize: 18),
-                        )),
+                            child: Text(
+                            "No Data Found ",
+                            style: TextStyle(fontSize: 18),
+                          )),
                   ),
                 ),
               ],
@@ -503,6 +502,40 @@ class _HomeBodyContentScreenState extends State<HomeBodyContentScreen> {
       // });
     } catch (e) {
       _displaySnackBar(context, "No user Found");
+    }
+  }
+
+  /// Get  data against title ////////////////////////////////////////////////////////
+  Future<String?> get_mall_search(String keyword) async {
+    mall_lst = [];
+
+    try {
+      firestoreInstance.collection("malls").get().then((value) {
+        for (int i = 0; i < value.docs.length; i++) {
+          try {
+            firestoreInstance
+                .collection("malls")
+                .doc(value.docs[i].id.toString())
+                .get()
+                .then((value) {
+              Map<String, dynamic>? h = value.data();
+              if (h != null) {
+                mallSearchResponse = mall_modelClass.fromJson(h);
+                if (mallSearchResponse!.name.trim() == keyword.trim()) {
+                  mall_lst!.add(mallSearchResponse!);
+                }
+              }
+            }).whenComplete(() {
+              developer.log("my data g       " + mall_lst!.length.toString());
+              setState(() {});
+            });
+          } catch (e) {
+            print(e.toString());
+          }
+        }
+      });
+    } catch (e) {
+      _displaySnackBar(context, "No Business Found");
     }
   }
 

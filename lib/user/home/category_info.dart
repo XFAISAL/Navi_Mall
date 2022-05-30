@@ -284,13 +284,15 @@ class _CategoryInfoScreenState extends State<CategoryInfoScreen>
     );
   }
 
-  getCategorySectionItem(IconData section_icon, String section_name,
+  getCategorySectionItem(IconData section_icon, String section,
       Color icon_color, Color container_color) {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const ViewSectionStores(),
+            builder: (context) => ViewSectionStores(
+              section: section,
+            ),
           ),
         );
       },
@@ -307,7 +309,7 @@ class _CategoryInfoScreenState extends State<CategoryInfoScreen>
           ),
         ),
         title: Text(
-          section_name,
+          section,
           style: GoogleFonts.lato(
               fontSize: 18,
               fontWeight: FontWeight.w400,

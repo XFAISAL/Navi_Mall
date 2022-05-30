@@ -7,6 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:navi_mall_app/colors.dart' as color;
 import 'package:getwidget/getwidget.dart';
+import 'package:navi_mall_app/user/home/map.dart';
+import 'package:navi_mall_app/utils/polyline.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -190,7 +192,13 @@ class _MallInfoScreenState extends State<MallInfoScreen> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () => {
+              Navigator.of(context).push(
+              MaterialPageRoute(
+              builder: (context) => PolyLine(),
+              ),
+              )
+            },
             child: Text(
               'View Map ',
               style: GoogleFonts.lato(fontSize: 18, color: Colors.white),

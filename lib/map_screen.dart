@@ -29,8 +29,10 @@ class _MapScreenState extends State<MapScreen> {
           body: Stack(
             children: [
               GoogleMap(
+              indoorViewEnabled: true,
                 onMapCreated: (GoogleMapController mapController) {
                   mapController = mapController;
+
                 },
                 initialCameraPosition: _cameraPosition,
               ),

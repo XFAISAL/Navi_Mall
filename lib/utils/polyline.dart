@@ -14,7 +14,7 @@ class PolyLine extends StatefulWidget {
 }
 
 class _PolyLineState extends State<PolyLine> {
-  CameraPosition _initialLocation = CameraPosition(target: LatLng(26.2334994,50.5538584));
+  CameraPosition _initialLocation = CameraPosition(target: LatLng(26.2334994,50.5538584),zoom: 19);
   late GoogleMapController mapController;
 
   late Position _currentPosition;
@@ -277,10 +277,10 @@ class _PolyLineState extends State<PolyLine> {
   ) async {
     polylinePoints = PolylinePoints();
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      AppConstants.google_api_key, // Google Maps API Key
+      AppConstants.google_api_key, // Google
       PointLatLng(startLatitude, startLongitude),
       PointLatLng(destinationLatitude, destinationLongitude),
-      travelMode: TravelMode.transit,
+      travelMode: TravelMode.walking,
     );
 
     if (result.points.isNotEmpty) {
@@ -320,9 +320,9 @@ class _PolyLineState extends State<PolyLine> {
             GoogleMap(
               markers: Set<Marker>.from(markers),
               initialCameraPosition: _initialLocation,
+              indoorViewEnabled: true,
               myLocationEnabled: true,
               myLocationButtonEnabled: false,
-              indoorViewEnabled: true,
               mapType: MapType.normal,
               zoomGesturesEnabled: true,
               zoomControlsEnabled: false,
@@ -449,7 +449,8 @@ class _PolyLineState extends State<PolyLine> {
                           ),
                           SizedBox(height: 5),
                           ElevatedButton(
-                            onPressed: (_startAddress != '' &&
+                            onPressed: (
+                                    _startAddress != '' &&
                                     _destinationAddress != '')
                                 ? () async {
                                     startAddressFocusNode.unfocus();
